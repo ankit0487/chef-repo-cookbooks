@@ -1,0 +1,9 @@
+server {
+    listen <%= node['floginapp-infra']['server_port'] %>;
+    server_name <%= node['floginapp-infra']['server_name'] %>;
+
+    location / {
+        include proxy_params;
+        uwsgi_pass unix://<%= node['floginapp-infra']['gunicorn_socket'] %>;
+    }
+}
