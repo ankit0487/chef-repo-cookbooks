@@ -9,8 +9,6 @@ package 'python-pip'
 
 package 'nginx'
 
-package 'mysql'
-
 
 # create app directories
 directory node['floginapp-infra']['project_dir'] do
