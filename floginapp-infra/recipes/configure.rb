@@ -1,4 +1,4 @@
-include_recipe 'apt::default'
+# include_recipe 'apt::default'
 package 'build-essential'
 package 'git'
 
