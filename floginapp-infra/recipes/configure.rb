@@ -1,5 +1,5 @@
 package 'apt'
-apt_update 
+# apt_update 
 package 'build-essential'
 package 'git'
 
