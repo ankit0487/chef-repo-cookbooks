@@ -2,7 +2,7 @@
 default['floginapp-infra']['app_name'] = 'sampleflaskapp'
 default['floginapp-infra']['project_root'] = '/srv/www/'
 default['floginapp-infra']['project_dir'] = '/srv/www/sampleflaskapp/'
-default['floginapp-infra']['app_dir'] = '/srv/www/sampleflaskapp/current/sampleflaskapp/' # AWS uses current
+default['floginapp-infra']['app_dir'] = '/srv/www/sampleflaskapp/current/' # AWS uses current
 default['floginapp-infra']['config_dir'] = '/etc/sampleflaskapp/' # Must update app if this changes
 
 # nginx settings
