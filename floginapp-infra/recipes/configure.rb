@@ -22,7 +22,7 @@ end
 
 # copy config files
 template "/etc/nginx/sites-available/floginapp" do
-   source 'floginapp-nginx.erb'
+   source 'floginapp-nginx.conf.erb'
 end
 
 link '/etc/nginx/sites-enabled/floginapp' do
