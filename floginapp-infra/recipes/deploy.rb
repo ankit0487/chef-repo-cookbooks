@@ -14,8 +14,8 @@ node[:deploy].each do |application, deploy|
 end
 
 execute 'update packages' do
-    # cwd node['floginapp-infra']['app_dir']
-    cwd "#{@application[:deploy_to]}"
+    cwd node['floginapp-infra']['app_dir']
+    # cwd "#{@application[:deploy_to]}"
     command 'pip install -r requirements.txt'
 end
 
