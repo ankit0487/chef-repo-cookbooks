@@ -15,7 +15,7 @@ end
 
 execute 'update packages' do
     # cwd node['floginapp-infra']['app_dir']
-    cwd <%= @application[:deploy_to]%>
+    cwd @application[:deploy_to]
     command 'pip install -r requirements.txt'
 end
 
