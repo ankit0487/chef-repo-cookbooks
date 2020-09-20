@@ -7,6 +7,5 @@ respawn
 setuid vagrant
 setgid www-data
 
-# chdir <%= node['floginapp-infra']['project_dir'] %>
-chdir <%= @application[:deploy_to]%>
+chdir <%= node['floginapp-infra']['project_dir'] %>
 exec gunicorn --workers 3 --bind unix:<%= node['floginapp-infra']['gunicorn_socket'] %> -m 007 wsgi
