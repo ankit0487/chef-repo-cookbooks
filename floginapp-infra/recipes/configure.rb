@@ -1,14 +1,25 @@
 package 'apt'
 # apt_update 
+execute 'apt_update' do
+  command 'sudo apt-get update'
+end
 package 'build-essential'
 package 'git'
+package 'curl'
 
-package 'python'
-package 'python-pip'
-
+#install python 3.6 and pip
+execute 'install_python3.6' do
+  command 'sudo add-apt-repository ppa:jonathonf/python-3.6'
+  command 'sudo apt-get update'
+  command 'sudo apt-get install python3.6'
+end
 
 package 'nginx'
 
+#install gnuicorn
+execute 'gunicorn' do
+  command 'pip install gunicorn'
+end
 
 # create app directories
 directory node['floginapp-infra']['project_dir'] do
@@ -29,7 +40,7 @@ link '/etc/nginx/sites-enabled/floginapp' do
   to '/etc/nginx/sites-available/floginapp'
 end
 
-template "/etc/init/floginapp.conf" do
+template "/etc/init/sampleflaskapp.conf" do
     source 'floginapp-gunicorn.conf.erb'
 end
 

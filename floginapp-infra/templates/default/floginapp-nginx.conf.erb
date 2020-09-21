@@ -4,6 +4,6 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass unix://<%= node['floginapp-infra']['gunicorn_socket'] %>;
+        proxy_pass http://unix:<%= node['floginapp-infra']['gunicorn_socket'] %>;
     }
 }

@@ -8,4 +8,4 @@ setuid vagrant
 setgid www-data
 
 chdir <%= node['floginapp-infra']['app_dir'] %>
-exec gunicorn --workers 3 --bind unix:<%= node['floginapp-infra']['gunicorn_socket'] %> -m 007 wsgi
+exec gunicorn --workers 3 --bind unix:<%= node['floginapp-infra']['gunicorn_socket'] %> -m 007 wsgi:app

@@ -20,7 +20,7 @@ execute 'update packages' do
 end
 
 # start gunicorn service
-service 'floginapp' do
+service 'sampleflaskapp' do
     provider Chef::Provider::Service::Upstart
     supports :status => true
     action [:restart]
