@@ -11,8 +11,8 @@ package 'curl'
 execute 'install_python3.6' do
   command 'sudo add-apt-repository ppa:jonathonf/python-3.6'
   command 'sudo apt-get update'
-  command 'sudo apt-get install python3.6'
-  command 'sudo apt-get install python3-pip'
+  command 'sudo apt-get -y install python3.6'
+  command 'sudo apt-get -y install python3-pip'
 end
 
 package 'nginx'
