@@ -1,3 +1,3 @@
 [program:<%= node['floginapp-infra']['app_name'] %>]
-command = gunicorn wsgi:app -b #{node['floginapp-infra']['gunicorn_socket']}
+command = gunicorn wsgi:app -b <%= node['floginapp-infra']['gunicorn_socket'] %>
 directory = <%= node['floginapp-infra']['app_dir'] %>

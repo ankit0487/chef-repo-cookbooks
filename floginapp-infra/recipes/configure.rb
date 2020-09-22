@@ -41,6 +41,11 @@ link '/etc/nginx/sites-enabled/floginapp' do
   to '/etc/nginx/sites-available/floginapp'
 end
 
+execute 'remove default nginx config from sites-available' do
+  command 'sudo rm /etc/nginx/sites-available/default'
+  command 'sudo rm /etc/nginx/sites-enabled/default'
+end 
+  
 # set up logging
 # nginx
 file node['floginapp-infra']['nginx_logfile'] do

@@ -7,7 +7,7 @@ default['floginapp-infra']['config_dir'] = '/etc/sampleflaskapp/' # Must update 
 
 # nginx settings
 default['floginapp-infra']['server_port'] = '80'
-default['floginapp-infra']['server_name'] = '127.0.0.1'
+default['floginapp-infra']['server_name'] = 'localhost'
 default['floginapp-infra']['nginx_logfile'] = '/var/log/nginx/access.log' # default
 default['floginapp-infra']['nginx_errorfile'] = '/var/log/nginx/error.log' # default
 default['floginapp-infra']['nginx_user'] = 'www-data' # default
