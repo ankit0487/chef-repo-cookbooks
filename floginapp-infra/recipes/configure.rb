@@ -45,6 +45,10 @@ template "/etc/init/sampleflaskapp.conf" do
     source 'floginapp-gunicorn.conf.erb'
 end
 
+execute 'configure_startup_on_boot' do
+  command 'sudo update-rc.d sampleflaskapp enable'
+end
+
 # set up logging
 # nginx
 file node['floginapp-infra']['nginx_logfile'] do
