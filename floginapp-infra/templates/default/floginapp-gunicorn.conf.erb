@@ -1,11 +1,3 @@
-description "Gunicorn application server running sampleflaskapp"
-
-start on runlevel [2345]
-stop on runlevel [!2345]
-
-respawn
-setuid vagrant
-setgid www-data
-
-chdir <%= node['floginapp-infra']['app_dir'] %>
-exec gunicorn --workers 3 --bind unix:<%= node['floginapp-infra']['gunicorn_socket'] %> -m 007 wsgi:app
+[program:<%= node['floginapp-infra']['app_name'] %>]
+command = gunicorn app:app -b #{node['floginapp-infra']['gunicorn_socket']}
+directory = <%= node['floginapp-infra']['app_dir'] %>

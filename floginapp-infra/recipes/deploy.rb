@@ -19,11 +19,9 @@ execute 'update packages' do
     command 'pip3 install -r requirements.txt'
 end
 
-# start gunicorn service
-service 'sampleflaskapp' do
-    provider Chef::Provider::Service::Upstart
-    supports :status => true
-    action [:restart]
+# start gunicorn service from supervisor
+execute 'start app from supervisor' do
+  command "sudo supervisorctl start #{node['floginapp-infra']['app_name']}"
 end
   
 service 'nginx' do

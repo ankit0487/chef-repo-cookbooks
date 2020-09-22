@@ -32,41 +32,27 @@ directory node['floginapp-infra']['config_dir'] do
 end
 
 
-# copy config files
+# copy nginx config files
 template "/etc/nginx/sites-available/floginapp" do
-   source 'floginapp-nginx.conf.erb'
+  source 'floginapp-nginx.conf.erb'
 end
 
 link '/etc/nginx/sites-enabled/floginapp' do
   to '/etc/nginx/sites-available/floginapp'
 end
 
-template "/etc/init/sampleflaskapp.conf" do
-    source 'floginapp-gunicorn.conf.erb'
-end
-
-execute 'configure_startup_on_boot' do
-  command 'sudo update-rc.d sampleflaskapp enable'
-end
-
 # set up logging
 # nginx
 file node['floginapp-infra']['nginx_logfile'] do
-    mode '0644'
-    owner node['floginapp-infra']['nginx_user']
-    group node['floginapp-infra']['nginx_group']
+  mode '0644'
+  owner node['floginapp-infra']['nginx_user']
+  group node['floginapp-infra']['nginx_group']
 end
 
 file node['floginapp-infra']['nginx_errorfile'] do
-    mode '0644'
-    owner node['floginapp-infra']['nginx_user']
-    group node['floginapp-infra']['nginx_group']
-end
-
-service 'sampleflaskapp' do
-  provider Chef::Provider::Service::Upstart
-  supports :status => true
-  action [:enable, :start]
+  mode '0644'
+  owner node['floginapp-infra']['nginx_user']
+  group node['floginapp-infra']['nginx_group']
 end
 
 # start nginx
@@ -74,4 +60,18 @@ end
 service 'nginx' do
   supports :status => true
   action [:enable, :start]
+end
+
+
+#install supervisor
+package 'supervisor'
+
+# copy supervisor config files
+template "/etc/supervisor/conf.d/#{node['floginapp-infra']['app_name']}.conf" do
+  source 'floginapp-gunicorn.conf.erb'
+end
+
+execute 'supervisor_reread' do
+  command 'sudo supervisorctl reread'
+  command 'sudo supervisorctl update'
 end
