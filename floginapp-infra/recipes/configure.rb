@@ -59,11 +59,11 @@ file node['floginapp-infra']['nginx_errorfile'] do
     group node['floginapp-infra']['nginx_group']
 end
 
-# service 'sampleflaskapp' do
-#   provider Chef::Provider::Service::Upstart
-#   supports :status => true
-#   action [:enable, :start]
-# end
+service 'sampleflaskapp' do
+  provider Chef::Provider::Service::Upstart
+  supports :status => true
+  action [:enable, :start]
+end
 
 # start nginx
 # note: start as sudo, will spawn child processes w/ www-data owner

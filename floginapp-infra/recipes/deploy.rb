@@ -20,15 +20,10 @@ execute 'update packages' do
 end
 
 # start gunicorn service
-# service 'sampleflaskapp' do
-#     provider Chef::Provider::Service::Upstart
-#     supports :status => true
-#     action [:restart]
-# end
-execute 'start_sampleflaskapp_gunicorn' do
-  cwd node['floginapp-infra']['app_dir']
-  # command "cd #{node['floginapp-infra']['app_dir']}"
-  command "gunicorn --workers 3 --bind unix:#{node['floginapp-infra']['gunicorn_socket']} -m 007 wsgi:app"
+service 'sampleflaskapp' do
+    provider Chef::Provider::Service::Upstart
+    supports :status => true
+    action [:restart]
 end
   
 service 'nginx' do
